@@ -54,14 +54,26 @@ for i in range(len(colors)):
     turtles.append(new_turtle)
 
 finish = [-230] * len(turtles)
-is_racing = True
+is_racing = False
+
+if user_bet:
+    is_racing = True
+
 while is_racing:
-    for t in turtles:
+    for i, t in enumerate(turtles):
         dist = np.random.randint(0, 10)
         t.forward(dist)
-        finish[t] += dist
-        if finish[t] >= 230:
+        finish[i] += dist
+        if finish[i] >= 200:
+            winner = t.pencolor()
             is_racing = False
+
+user_won = user_bet == winner
+
+if user_won:
+    print(f"Congrats! You're bet was correct, the {winner} turtle won!")
+else:
+    print(f"Sorry, you lost your bet. The {winner} turtle won.")
 
 
 
