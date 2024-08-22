@@ -29,6 +29,13 @@ class Snake():
         self.x_coords -= 20
         self.snake_body.append(t)
 
+    def reset(self):
+        for seg in self.snake_body:
+            seg.goto(1000, 1000)
+        self.snake_body.clear()
+        self.create_body()
+        self.head = self.snake_body[0]
+
     def extend(self):
         self.add_body(self.snake_body[-1].position())
 
